@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/photo_2024-04-16_16-17-20.jpg
+/src/main/resources/application-local.properties

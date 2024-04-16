@@ -17,6 +17,7 @@ public class FileService {
     @Autowired
     private StudentService studentService;
     public void createExcelFile(){
+        int rowCounter=0;
         List<StudentDTO> studentDTOList=null;
         // Create a new workbook
         try (Workbook workbook = new XSSFWorkbook()) {
@@ -33,7 +34,7 @@ public class FileService {
 
             // Add student data rows
             for (StudentDTO studentDTO : studentDTOList) {
-                int rowCounter=0;
+
                 Row row = sheet.createRow(rowCounter+ 1);
 
 //                for (int j = 0; j < studentDTOList[i].length; j++) {
@@ -43,10 +44,10 @@ public class FileService {
 //                    }
 //                }
 //                Cell cell= row.createCell(studentDTO.);
+
+                rowCounter++;
             }
-            for (StudentDTO studentDTO : studentDTOList) {
-//                Cell cell=
-            }
+
 
             // Write the workbook to a file
             try (FileOutputStream fileOut = new FileOutputStream("student_data.xlsx")) {
@@ -58,6 +59,5 @@ public class FileService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

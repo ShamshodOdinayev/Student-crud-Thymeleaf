@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentDTO {
     private String id;
+    private String studentId;
     private String name;
     private String surname;
     private String middleName;
@@ -20,7 +21,9 @@ public class StudentDTO {
     private Gender gender;
     private LocalDate studyStartDate;
     private LocalDate studyEndDate;
+    private String fieldOfStudy;
     private LocalDate birthDate;
+    private String photoUrl;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private Boolean visible;

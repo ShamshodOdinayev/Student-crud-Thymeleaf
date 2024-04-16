@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
 import uz.students.service.StudentService;
@@ -32,7 +31,22 @@ public class StudentController {
         model.addAttribute("currentPage", page);
         model.addAttribute("filterDTO", filterDTO);
         model.addAttribute("pageSize", 10);
-        return "admin/profile/list";
+        return "student/index";
+    }
+
+    @GetMapping("/go/add")
+    public String goToAdd(Model model) {
+        model.addAttribute("student", new StudentDTO());
+        model.addAttribute("isUpdate", false);
+        return "student/add";
+    }
+
+    @PostMapping("/add")
+    public String create(@RequestParam("file") MultipartFile file,
+                         @ModelAttribute StudentDTO dto,
+                         Model model) {
+        studentService.create(dto, file);
+        return "redirect:/student/list";
     }
 
     private StudentFilterDTO correctFilterDTO(String nameQuery, String id) {

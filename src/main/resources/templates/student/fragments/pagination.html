@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:fragment="paging(pageNum, label, tooltip, filterDTO, pageSize)" class="page-link"
+   th:href="@{'/student/list?' + 'nameQuery=' + ${filterDTO.nameQuery}   + '&id=' + ${filterDTO.id} + '&page=' + ${pageNum} + '&size=' + ${pageSize}}"
+   th:title="${tooltip}" rel="tooltip">
+    [[${label}]]
+</a>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
+import uz.students.service.FileService;
 import uz.students.service.StudentService;
 
 @Controller
@@ -15,6 +16,9 @@ import uz.students.service.StudentService;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private FileService fileService;
 
     @GetMapping("/list")
     public String getProfileList(Model model,
@@ -31,6 +35,8 @@ public class StudentController {
         model.addAttribute("currentPage", page);
         model.addAttribute("filterDTO", filterDTO);
         model.addAttribute("pageSize", 10);
+        fileService.createExcelFile();
+        fileService.createPdf("07164971-23b7-475a-bf41-0714f168431c");
         return "student/index";
     }
 

@@ -17,8 +17,6 @@ import uz.students.service.StudentService;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private PDFService pdfService;
 
     @Autowired
     private FileService fileService;

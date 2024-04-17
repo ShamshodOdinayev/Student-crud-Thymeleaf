@@ -32,33 +32,6 @@ public class FileService {
             // Add header row
             Row headerRow = sheet.createRow(0);
             List<String> headers = studentService.getColumnNames();
-//            String[] headers = {"ID", "Name", "Surname", "Birthdate"};
-//            for (int i = 0; i < headers.size(); i++) {
-//                Cell cell = headerRow.createCell(i);
-//                cell.setCellValue(headers.get(i));
-//            }
-//            // Add student data rows
-//            for (StudentDTO studentDTO : studentDTOList) {
-//                Row row = sheet.createRow(rowCounter+ 1);
-////                for (int i = 0; i < studentDTOList.size(); i++) {
-//                    Cell cell= row.createCell(rowCounter++);
-//                    cell.setCellValue(studentDTO.getId());
-//                    Cell cell1= row.createCell(rowCounter++);
-//                    cell1.set
-//                    row.createCell(rowCounter++);
-//                    row.createCell(rowCounter++);
-//                    row.createCell(rowCounter++);
-//                    row.createCell(rowCounter++);
-//                    row.createCell(rowCounter++);
-//                    row.createCell(rowCounter++);
-//                }
-//                for (int j = 0; j < studentDTOList[i].length; j++) {
-//                    Cell cell = row.createCell(j);
-//                    if (studentDTOList[i][j] instanceof String) {
-//                        cell.setCellValue((String) studentDTOList[i][j]);
-//                    }
-//                }
-//                Cell cell= row.createCell(studentDTO.);
 
             for (int i = 0; i < headers.size(); i++) {
                 headerRow.createCell(i).setCellValue(headers.get(i));
@@ -95,35 +68,37 @@ public class FileService {
             e.printStackTrace();
         }
     }
-public void writeContent(PDPageContentStream contentStream, StudentDTO studentById){
-    try {
+
+    public void writeContent(PDPageContentStream contentStream, StudentDTO studentById) {
+        try {
 //        contentStream.setFont(PDType1Font.HELVETICA, 12);
-    contentStream.beginText();
-    contentStream.newLineAtOffset(100, 10);
-    contentStream.showText("ID: " + studentById.getStudentId());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Name: " + studentById.getName());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Surname: " + studentById.getSurname());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Middle name: " + studentById.getMiddleName());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Description: " + studentById.getDescription());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Gender: " + studentById.getGender());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Study start date: " + studentById.getStudyStartDate());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Study End date: " + studentById.getStudyEndDate());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Field of study: " + studentById.getFieldOfStudy());
-    contentStream.newLineAtOffset(0, -20);
-    contentStream.showText("Birthdate: " + studentById.getBirthDate());
-    contentStream.endText();
-    } catch (IOException e) {
-        throw new RuntimeException(e);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(100, 10);
+            contentStream.showText("ID: " + studentById.getStudentId());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Name: " + studentById.getName());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Surname: " + studentById.getSurname());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Middle name: " + studentById.getMiddleName());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Description: " + studentById.getDescription());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Gender: " + studentById.getGender());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Study start date: " + studentById.getStudyStartDate());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Study End date: " + studentById.getStudyEndDate());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Field of study: " + studentById.getFieldOfStudy());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Birthdate: " + studentById.getBirthDate());
+            contentStream.endText();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-}
+
     public void createPdf(String id) {
         StudentDTO studentById = studentService.getStudentById(id);
         try (PDDocument document = new PDDocument()) {
@@ -137,7 +112,7 @@ public void writeContent(PDPageContentStream contentStream, StudentDTO studentBy
             float imageYTop = pageHeight - 100;
             float imageYMiddle = (pageHeight - imageHeight) / 2;
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                if (studentById.getPhotoUrl()!=null) {
+                if (studentById.getPhotoUrl() != null) {
                     PDImageXObject image = PDImageXObject.createFromFile(studentById.getPhotoUrl(), document);
                     imageWidth = image.getWidth();
                     imageHeight = image.getHeight();
@@ -148,7 +123,7 @@ public void writeContent(PDPageContentStream contentStream, StudentDTO studentBy
 
                     // Draw image in the middle
                     contentStream.drawImage(image, imageX, imageYMiddle - imageHeight, imageWidth, imageHeight);
-                }else {
+                } else {
                     writeContent(contentStream, studentById);
                 }
             }

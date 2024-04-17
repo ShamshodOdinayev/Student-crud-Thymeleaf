@@ -30,7 +30,6 @@ public class StudentController {
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                  @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         StudentFilterDTO filterDTO = correctFilterDTO(nameQuery, id);
-
         Page<StudentDTO> result = studentService.getProfileList(filterDTO, page, size);
         model.addAttribute("studentList", result.getContent());
         model.addAttribute("totalElements", result.getTotalElements());
@@ -38,8 +37,6 @@ public class StudentController {
         model.addAttribute("currentPage", page);
         model.addAttribute("filterDTO", filterDTO);
         model.addAttribute("pageSize", 10);
-        fileService.createExcelFile();
-        fileService.createPdf("07164971-23b7-475a-bf41-0714f168431c");
         return "student/index";
     }
 

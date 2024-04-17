@@ -99,28 +99,6 @@ public class StudentService {
         }
         return columnNames;
     }
-    public StudentDTO getStudentById(String id){
-        Optional<StudentEntity> studentEntity = studentRepository.findById(id);
-        StudentDTO studentDTO=new StudentDTO();
-        studentDTO.setId(studentEntity.get().getId());
-        studentDTO.setName(studentEntity.get().getName());
-        studentDTO.setSurname(studentEntity.get().getSurname());
-        studentDTO.setMiddleName(studentEntity.get().getMiddleName());
-        studentDTO.setDescription(studentEntity.get().getDescription());
-        studentDTO.setGender(Gender.MALE);
-        studentDTO.setStudyStartDate(studentEntity.get().getStudyStartDate());
-        studentDTO.setStudyEndDate(studentEntity.get().getStudyEndDate());
-        studentDTO.setFieldOfStudy(studentEntity.get().getFieldOfStudy());
-        studentDTO.setBirthDate(studentEntity.get().getBirthDate());
-//            studentEntity.getPhoto().getPath().isEmpty()?studentDTO.setPhotoUrl("Rasm yo'q"):studentDTO.setPhotoUrl(studentEntity.getPhoto().getPath());
-//            studentDTO.setPhotoUrl(studentEntity.getPhoto().getPath());
-        studentDTO.setCreatedDate(studentEntity.get().getCreatedDate());
-        studentDTO.setUpdatedDate(studentEntity.get().getUpdatedDate());
-        studentDTO.setVisible(studentEntity.get().getVisible());
-        studentDTO.setDeletedDate(studentEntity.get().getDeletedDate());
-        return studentDTO;
-    }
-
     public StudentDTO getStudentById(String id) {
         Optional<StudentEntity> optional = studentRepository.getStudentById(id);
         return toDTO(optional.get());

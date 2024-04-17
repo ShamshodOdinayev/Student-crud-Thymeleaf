@@ -39,7 +39,7 @@ public class ImportExcelService {
                 row.createCell(2).setCellValue(entity.getMiddleName());
                 row.createCell(3).setCellValue(entity.getBirthDate().toString());
                 row.createCell(4).setCellValue(entity.getStudyStartDate().toString());
-                row.createCell(5).setCellValue(entity.getStudyEndDate());
+                row.createCell(5).setCellValue(entity.getStudyEndDate().toString());
                 row.createCell(6).setCellValue(entity.getFieldOfStudy());
                 row.createCell(7).setCellValue(entity.getDescription());
                 row.createCell(8).setCellValue(entity.getGender() != null ? entity.getGender().toString() : "");

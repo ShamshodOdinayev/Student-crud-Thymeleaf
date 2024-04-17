@@ -34,32 +34,6 @@ public class StudentService {
         Page<StudentDTO> result = studentCustomRepository.filter(filterDTO, page - 1, size);
         return result;
     }
-    public List<StudentDTO> getProfiles() {
-        List<StudentDTO> list=new LinkedList<>();
-        Iterable<StudentEntity> all = studentRepository.findAll();
-        for (StudentEntity studentEntity : all) {
-            StudentDTO studentDTO=new StudentDTO();
-            studentDTO.setId(studentEntity.getId());
-            studentDTO.setStudentId(studentEntity.getStudentId());
-            studentDTO.setName(studentEntity.getName());
-            studentDTO.setSurname(studentEntity.getSurname());
-            studentDTO.setMiddleName(studentEntity.getMiddleName());
-            studentDTO.setDescription(studentEntity.getDescription());
-            studentDTO.setGender(Gender.MALE);
-            studentDTO.setStudyStartDate(studentEntity.getStudyStartDate());
-            studentDTO.setStudyEndDate(studentEntity.getStudyEndDate());
-            studentDTO.setFieldOfStudy(studentEntity.getFieldOfStudy());
-            studentDTO.setBirthDate(studentEntity.getBirthDate());
-//            studentEntity.getPhoto().getPath().isEmpty()?studentDTO.setPhotoUrl("Rasm yo'q"):studentDTO.setPhotoUrl(studentEntity.getPhoto().getPath());
-//            studentDTO.setPhotoUrl(studentEntity.getPhoto().getPath());
-            studentDTO.setCreatedDate(studentEntity.getCreatedDate());
-            studentDTO.setUpdatedDate(studentEntity.getUpdatedDate());
-            studentDTO.setVisible(studentEntity.getVisible());
-            studentDTO.setDeletedDate(studentEntity.getDeletedDate());
-            list.add(studentDTO);
-        }
-        return list;
-    }
 
     public void create(StudentDTO dto, MultipartFile file) {
         String photoId = null;
@@ -81,24 +55,6 @@ public class StudentService {
         studentRepository.save(studentEntity);
     }
 
-    @SneakyThrows
-    public List<String> getColumnNames() {
-        List<String> columnNames=new LinkedList<>();
-        List<String> headersName=studentRepository.getMetaData();
-        if (headersName.isEmpty()) {
-            throw new AppBadException(new String("table not found"));
-        }
-        System.out.println(headersName);
-//        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnCount = 0;
-        columnCount = headersName.size();
-        // The column count starts from 1
-        for (int i = 0; i < columnCount; i++ ) {
-            String name = headersName.get(i);
-            columnNames.add(name);
-        }
-        return columnNames;
-    }
     public StudentDTO getStudentById(String id) {
         Optional<StudentEntity> optional = studentRepository.getStudentById(id);
         return toDTO(optional.get());

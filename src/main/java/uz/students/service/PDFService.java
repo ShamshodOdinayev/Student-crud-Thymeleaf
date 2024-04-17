@@ -79,19 +79,4 @@ public class PDFService {
             throw new RuntimeException(e);
         }
     }
-
-    public ResponseEntity<Resource> download(String fileName) {
-        try {
-            Path file = Paths.get("uploadPDF/" + fileName + ".pdf");
-            Resource resource = new UrlResource(file.toUri());
-            if (resource.exists() || resource.isReadable()) {
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + fileName + "\"").body(resource);
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error: " + e.getMessage());
-        }
-
-        return null;
-    }
 }

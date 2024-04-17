@@ -10,6 +10,8 @@ import uz.students.entity.StudentEntity;
 import uz.students.repository.StudentRepository;
 import uz.students.repository.custom.StudentCustomRepository;
 
+import java.util.Optional;
+
 @Service
 public class StudentService {
     @Autowired
@@ -42,5 +44,52 @@ public class StudentService {
         studentEntity.setStudyEndDate(dto.getStudyEndDate());
         studentEntity.setFieldOfStudy(dto.getFieldOfStudy());
         studentRepository.save(studentEntity);
+    }
+
+    public StudentDTO getStudentById(String id) {
+        Optional<StudentEntity> optional = studentRepository.getStudentById(id);
+        return toDTO(optional.get());
+    }
+
+    private StudentDTO toDTO(StudentEntity studentEntity) {
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setStudentId(studentEntity.getStudentId());
+        studentDTO.setName(studentEntity.getName());
+        studentDTO.setSurname(studentEntity.getSurname());
+        studentDTO.setMiddleName(studentEntity.getMiddleName());
+        if (studentEntity.getPhotoId() != null) {
+            studentDTO.setPhotoUrl(attachService.getOnlyUrl(studentEntity.getPhotoId()));
+        }
+        studentDTO.setBirthDate(studentEntity.getBirthDate());
+        studentDTO.setStudyStartDate(studentEntity.getStudyStartDate());
+        studentDTO.setStudyEndDate(studentEntity.getStudyEndDate());
+        studentDTO.setFieldOfStudy(studentEntity.getFieldOfStudy());
+        studentDTO.setGender(studentEntity.getGender());
+        studentDTO.setDescription(studentEntity.getDescription());
+        return studentDTO;
+    }
+
+    public void update(String studentId, StudentDTO studentDTO, MultipartFile file) {
+        Optional<StudentEntity> studentById = studentRepository.getStudentById(studentId);
+        StudentEntity studentEntity = studentById.get();
+        if (!file.isEmpty()) {
+            String photoId = attachService.save2(file);
+            studentEntity.setPhotoId(photoId);
+        }
+        studentEntity.setStudentId(studentDTO.getStudentId());
+        studentEntity.setName(studentDTO.getName());
+        studentEntity.setSurname(studentDTO.getSurname());
+        studentEntity.setGender(studentDTO.getGender());
+        studentEntity.setDescription(studentDTO.getDescription());
+        studentEntity.setBirthDate(studentDTO.getBirthDate());
+        studentEntity.setMiddleName(studentDTO.getMiddleName());
+        studentEntity.setStudyStartDate(studentDTO.getStudyStartDate());
+        studentEntity.setStudyEndDate(studentDTO.getStudyEndDate());
+        studentEntity.setFieldOfStudy(studentDTO.getFieldOfStudy());
+        studentRepository.save(studentEntity);
+    }
+
+    public void delete(String id) {
+        studentRepository.deleteById(id);
     }
 }

@@ -49,6 +49,28 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    @GetMapping("/go/update/{id}")
+    public String updateById(@PathVariable("id") String id, Model model) {
+        StudentDTO studentDTO = studentService.getStudentById(id);
+        model.addAttribute("student", studentDTO);
+        model.addAttribute("isUpdate", true);
+        return "student/add";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") String studentId,
+                         @RequestParam("file") MultipartFile file,
+                         @ModelAttribute StudentDTO studentDTO) {
+        studentService.update(studentId, studentDTO, file);
+        return "redirect:/student/list";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute StudentDTO dto) {
+        studentService.delete(dto.getId());
+        return "redirect:/student/list";
+    }
+
     private StudentFilterDTO correctFilterDTO(String nameQuery, String id) {
         StudentFilterDTO filterDTO = new StudentFilterDTO();
         /*

@@ -53,6 +53,7 @@ public class StudentService {
 
     private StudentDTO toDTO(StudentEntity studentEntity) {
         StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(studentEntity.getId());
         studentDTO.setStudentId(studentEntity.getStudentId());
         studentDTO.setName(studentEntity.getName());
         studentDTO.setSurname(studentEntity.getSurname());

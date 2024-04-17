@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
-import uz.students.service.PDFService;
 import uz.students.service.StudentService;
 
 @Controller
@@ -16,8 +15,6 @@ import uz.students.service.StudentService;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private PDFService pdfService;
 
     @GetMapping("/list")
     public String getProfileList(Model model,
@@ -26,7 +23,6 @@ public class StudentController {
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                  @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         StudentFilterDTO filterDTO = correctFilterDTO(nameQuery, id);
-
         Page<StudentDTO> result = studentService.getProfileList(filterDTO, page, size);
         model.addAttribute("studentList", result.getContent());
         model.addAttribute("totalElements", result.getTotalElements());

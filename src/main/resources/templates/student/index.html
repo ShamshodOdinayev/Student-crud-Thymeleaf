@@ -2,7 +2,7 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Yodju</title>
+    <title>University Management System</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -14,26 +14,14 @@
 
     <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/main_style.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/side_bar.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/top_bar.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/admin/profile.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/admin/student.css}"/>
 </head>
 <body>
 
 
 <div class="wrapper d-flex align-items-stretch">
 
-<!--    &lt;!&ndash; Sidebar &ndash;&gt;-->
-<!--    <div th:replace="~{admin/fragments/sidebar::sidebar}"></div>-->
-<!--    &lt;!&ndash; End of Sidebar &ndash;&gt;-->
-
-    <!-- Page Content  -->
     <div id="content" class="">
-
-<!--        &lt;!&ndash; Topbar &ndash;&gt;-->
-<!--        <div th:replace="~{admin/fragments/topbar::topbar('Profile')}"></div>-->
-<!--        &lt;!&ndash; End of Topbar &ndash;&gt;-->
-
         <!-- Page -->
         <div class="main_body px-1 pt-1">
             <div class="card mh-100vh">
@@ -193,8 +181,7 @@
 <script th:src="@{/js/jquery.js}"></script>
 <script th:src="@{/js/popper.js}"></script>
 <script th:src="@{/js/main.js}"></script>
-<script th:src="@{/js/sidebar.js}"></script>
-<script th:src="@{/js/admin/profile/profile.js}"></script>
+<script th:src="@{/js/student/student.js}"></script>
 
 </body>
 </html>

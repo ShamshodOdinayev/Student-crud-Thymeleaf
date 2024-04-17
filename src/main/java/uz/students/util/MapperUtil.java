@@ -25,21 +25,8 @@ public class MapperUtil {
     }
 
     public static Gender getGenderValue(Object o) {
-        return o == null ? null : (Gender) o;
+        return o == null ? null : Gender.valueOf(o.toString());
     }
-
-    public static Long getLongValue(Object o) {
-        return o == null ? null : (Long) o;
-    }
-
-    public static Integer getIntegerValue(Object o) {
-        return o == null ? null : (Integer) o;
-    }
-
-    public static LocalDateTime getDateValue(Object o) {
-        return o == null ? null : (LocalDateTime) o;
-    }
-
 
     public static LocalDateTime getLocalDateTime(Object o) {
         String dateTime = getStringValue(o);

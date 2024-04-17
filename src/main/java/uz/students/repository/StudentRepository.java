@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import uz.students.dto.StudentDTO;
 import uz.students.entity.StudentEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 import java.sql.ResultSetMetaData;
@@ -24,6 +25,8 @@ public interface StudentRepository extends CrudRepository<StudentEntity, String>
     @Transactional
     @Query("update StudentEntity s set s.visible=false where s.id=?1")
     void deleteById(String id);
+    @Query("from StudentEntity where visible=true ")
+    List<StudentEntity> findAll();
     @Query(value = "SELECT column_name\n" +
             "FROM information_schema.columns\n" +
             "WHERE table_schema = 'public' AND table_name = 'student';", nativeQuery = true)

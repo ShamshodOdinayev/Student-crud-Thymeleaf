@@ -21,113 +21,78 @@
 <body>
 
 
-    <div class="wrapper d-flex align-items-stretch">
-        <h1>University Management System</h1>
-        <hr>
+<div class="container">
+    <h1>University Management System</h1>
+    <hr>
     <!-- Page -->
-    <div class="main_body px-1 pt-1">
-        <div class="card with-50 margin-auto">
-            <div class="card-body">
-                <h1 class="h3 mb-2 text-gray-800">Student Added</h1>
-                <form method="post"
-                      th:action="${isUpdate} ? @{/student/update/{id}(id=${student.id})} : @{/student/add}"
-                      th:object="${student}"
-                      enctype="multipart/form-data" autocomplete="off">
+    <h1 class="h3 mb-2 text-gray-800">Student Added</h1>
+    <form method="post"
+          th:action="${isUpdate} ? @{/student/update/{id}(id=${student.id})} : @{/student/add}"
+          th:object="${student}"
+          enctype="multipart/form-data" autocomplete="off">
 
-                    <br>
-<!--                    <div class="d-flex gap-10">-->
-                        <div class="flex-grow-1">
-                            <label for="file-upload-input-id">Фото</label>
-                            <div class="form-image-block">
-                                <img src="" th:src="${student.photoUrl != null ? student.photoUrl : ''}"
-                                     id="file-upload-img-id" alt="">
-                            </div>
-                            <div class="file-input-wrapper">
-                                <input type="file" id="file-upload-input-id" name="file" accept="image/*" hidden/>
-                                <label for="file-upload-input-id">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class=" pb-2">
-                                <label for="id">ID:</label>
-                                <input type="text" id="id" class="form-control" name="id" placeholder="id"
-                                       th:field="*{studentId}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" class="form-control" name="name" placeholder="name"
-                                       th:field="*{name}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="surname">Surname:</label>
-                                <input type="text" id="surname" class="form-control" name="surname"
-                                       placeholder="surname"
-                                       th:field="*{surname}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="middleName">Middle name:</label>
-                                <input type="text" id="middleName" class="form-control" name="middleName"
-                                       placeholder="middleName"
-                                       th:field="*{middleName}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="gender">Gender</label>
-                                <select id="gender" name="gender" th:field="*{gender}">
-                                    <option value="MALE">MALE</option>
-                                    <option value="FEMALE">FEMALE</option>
-                                </select>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="birthDate">BirthDate:</label>
-                                <input type="date" id="birthDate" class="form-control" name="birthDate"
-                                       placeholder="birthDate"
-                                       th:field="*{birthDate}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="studyStartDate">study Start Date:</label>
-                                <input type="date" id="studyStartDate" class="form-control" name="studyStartDate"
-                                       placeholder="studyStartDate"
-                                       th:field="*{studyStartDate}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="studyEndDate">Study End Date:</label>
-                                <input type="date" id="studyEndDate" class="form-control" name="studyEndDate"
-                                       placeholder="studyEndDate"
-                                       th:field="*{studyEndDate}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="fieldOfStudy">Field Of Study:</label>
-                                <input type="text" id="fieldOfStudy" class="form-control" name="fieldOfStudy"
-                                       placeholder="fieldOfStudy"
-                                       th:field="*{fieldOfStudy}" required>
-                            </div>
-                            <div class=" pb-2">
-                                <label for="description">Description:</label>
-                                <input type="text" id="description" class="form-control" name="description"
-                                       placeholder="description"
-                                       th:field="*{description}" required>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class=" ">
-                        <div class="row justify-content-end">
-                            <div class="col-2">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"
-                                            th:text="${isUpdate ? 'Update': 'Save'}">Save
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+        <br>
+        <div class="flex-grow-1">
+            <label for="file-upload-input-id">Фото</label>
+            <div class="form-image-block">
+                <img src="" th:src="${student.photoUrl != null ? student.photoUrl : ''}"
+                     id="file-upload-img-id" alt="">
+            </div>
+            <div class="file-input-wrapper">
+                <input type="file" id="file-upload-input-id" name="file" accept="image/*" hidden/>
+                <label for="file-upload-input-id">Choose file</label>
             </div>
         </div>
-    </div>
-    <!-- Page  End-->
-</div>
+
+        <label for="id">ID:</label>
+        <input type="text" id="id" class="form-control mb-4 col-4" name="id" placeholder="id"
+               th:field="*{studentId}" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" class="form-control mb-4 col-4 mb-4 col-4" name="name" placeholder="name"
+               th:field="*{name}" required>
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" class="form-control mb-4 col-4" name="surname"
+               placeholder="surname"
+               th:field="*{surname}" required>
+        <label for="middleName">Middle name:</label>
+        <input type="text" id="middleName" class="form-control mb-4 col-4" name="middleName"
+               placeholder="middleName"
+               th:field="*{middleName}" required>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" th:field="*{gender}">
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+        </select>
+        <label for="birthDate">BirthDate:</label>
+        <input type="date" id="birthDate" class="form-control mb-4 col-4" name="birthDate"
+               placeholder="birthDate"
+               th:field="*{birthDate}" required>
+        <label for="studyStartDate">study Start Date:</label>
+        <input type="date" id="studyStartDate" class="form-control mb-4 col-4" name="studyStartDate"
+               placeholder="studyStartDate"
+               th:field="*{studyStartDate}" required>
+        <label for="studyEndDate">Study End Date:</label>
+        <input type="date" id="studyEndDate" class="form-control mb-4 col-4" name="studyEndDate"
+               placeholder="studyEndDate"
+               th:field="*{studyEndDate}" required>
+        <label for="fieldOfStudy">Field Of Study:</label>
+        <input type="text" id="fieldOfStudy" class="form-control mb-4 col-4" name="fieldOfStudy"
+               placeholder="fieldOfStudy"
+               th:field="*{fieldOfStudy}" required>
+        <label for="description">Description:</label>
+        <input type="text" id="description" class="form-control mb-4 col-4" name="description"
+               placeholder="description"
+               th:field="*{description}" required>
+        <div class=" ">
+            <div class="col-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"
+                            th:text="${isUpdate ? 'Update': 'Save'}">Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 

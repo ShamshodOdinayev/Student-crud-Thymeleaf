@@ -8,5 +8,6 @@ import lombok.Setter;
 public class StudentFilterDTO {
     private String nameQuery;
     private String id;
+    private String pfdUrl;
 
 }

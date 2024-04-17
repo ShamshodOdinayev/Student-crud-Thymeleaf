@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import uz.students.entity.StudentEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentRepository extends CrudRepository<StudentEntity, String> {
@@ -16,4 +17,6 @@ public interface StudentRepository extends CrudRepository<StudentEntity, String>
     @Transactional
     @Query("update StudentEntity s set s.visible=false where s.id=?1")
     void deleteById(String id);
+    @Query("from StudentEntity where visible=true ")
+    List<StudentEntity> findAll();
 }

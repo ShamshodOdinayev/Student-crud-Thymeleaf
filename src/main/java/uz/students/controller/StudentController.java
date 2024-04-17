@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
+import uz.students.service.PDFService;
 import uz.students.service.StudentService;
 
 @Controller
@@ -15,6 +16,8 @@ import uz.students.service.StudentService;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private PDFService pdfService;
 
     @GetMapping("/list")
     public String getProfileList(Model model,

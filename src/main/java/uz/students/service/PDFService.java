@@ -38,7 +38,7 @@ public class PDFService {
         paragraph.add("\nName: " + studentEntity.getName());
         paragraph.add("\nSurname: " + studentEntity.getSurname());
         paragraph.add("\nDescription: " + studentEntity.getDescription());
-        paragraph.add("\nFieldOfStudy: " + studentEntity.getFieldOfStudy());
+        paragraph.add("\nFieldOfStudy: " + studentEntity.getFieldOfStudyId());
         paragraph.add("\nStudyStartDate: " + studentEntity.getStudyStartDate());
         paragraph.add("\nStudyEndDate: " + studentEntity.getStudyEndDate());
         paragraph.add("\nPhoto:");

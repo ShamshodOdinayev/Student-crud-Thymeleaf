@@ -21,7 +21,7 @@ public class StudentDTO {
     private Gender gender;
     private LocalDate studyStartDate;
     private LocalDate studyEndDate;
-    private String fieldOfStudy;
+    private String fieldOfStudyId;
     private LocalDate birthDate;
     private String photoUrl;
     private LocalDateTime createdDate;

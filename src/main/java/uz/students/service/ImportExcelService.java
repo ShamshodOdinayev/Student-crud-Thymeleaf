@@ -22,7 +22,7 @@ public class ImportExcelService {
 
             // Sarlavha ustuni yaratish
             Row headerRow = sheet.createRow(0);
-            String[] columns = {"Name", "Surname", "Middle Name", "Birth_date", "Study_start_date", "Study_end_date", "Field_of_study", "Description", "Gender", "Created_date", "Photo_id"}; // Misol uchun
+            String[] columns = {"Id", "Name", "Surname", "Middle Name", "Birth_date", "Study_start_date", "Study_end_date", "Field_of_study", "Description", "Gender", "Created_date", "Photo_id"}; // Misol uchun
             for (int i = 0; i < columns.length; i++) {
                 Cell cell = headerRow.createCell(i);
                 cell.setCellValue(columns[i]);
@@ -34,17 +34,18 @@ public class ImportExcelService {
                 Row row = sheet.createRow(rowNum++);
                 // Kerakli ustunlarni qoshish
 
-                row.createCell(0).setCellValue(entity.getName());
-                row.createCell(1).setCellValue(entity.getSurname());
-                row.createCell(2).setCellValue(entity.getMiddleName());
-                row.createCell(3).setCellValue(entity.getBirthDate().toString());
-                row.createCell(4).setCellValue(entity.getStudyStartDate().toString());
-                row.createCell(5).setCellValue(entity.getStudyEndDate().toString());
-                row.createCell(6).setCellValue(entity.getFieldOfStudy());
-                row.createCell(7).setCellValue(entity.getDescription());
-                row.createCell(8).setCellValue(entity.getGender() != null ? entity.getGender().toString() : "");
-                row.createCell(9).setCellValue(entity.getCreatedDate().toString());
-                row.createCell(10).setCellValue(entity.getPhotoId());
+                row.createCell(0).setCellValue(entity.getStudentId());
+                row.createCell(1).setCellValue(entity.getName());
+                row.createCell(2).setCellValue(entity.getSurname());
+                row.createCell(3).setCellValue(entity.getMiddleName());
+                row.createCell(4).setCellValue(entity.getBirthDate().toString());
+                row.createCell(5).setCellValue(entity.getStudyStartDate().toString());
+                row.createCell(6).setCellValue(entity.getStudyEndDate().toString());
+                row.createCell(7).setCellValue(entity.getFieldOfStudyId());
+                row.createCell(8).setCellValue(entity.getDescription());
+                row.createCell(9).setCellValue(entity.getGender() != null ? entity.getGender().toString() : "");
+                row.createCell(10).setCellValue(entity.getCreatedDate().toString());
+                row.createCell(11).setCellValue(entity.getPhotoId());
             }
 
             // Faylni saqlash

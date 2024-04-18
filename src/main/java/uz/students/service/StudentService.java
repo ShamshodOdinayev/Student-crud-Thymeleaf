@@ -1,6 +1,5 @@
 package uz.students.service;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -8,17 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
 import uz.students.entity.StudentEntity;
-import uz.students.enums.Gender;
-import uz.students.exp.AppBadException;
 import uz.students.repository.StudentRepository;
 import uz.students.repository.custom.StudentCustomRepository;
 
-import java.util.Optional;
-
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,7 +42,7 @@ public class StudentService {
         studentEntity.setMiddleName(dto.getMiddleName());
         studentEntity.setStudyStartDate(dto.getStudyStartDate());
         studentEntity.setStudyEndDate(dto.getStudyEndDate());
-        studentEntity.setFieldOfStudy(dto.getFieldOfStudy());
+        studentEntity.setFieldOfStudyId(dto.getFieldOfStudyId());
         studentRepository.save(studentEntity);
     }
 
@@ -73,7 +64,7 @@ public class StudentService {
         studentDTO.setBirthDate(studentEntity.getBirthDate());
         studentDTO.setStudyStartDate(studentEntity.getStudyStartDate());
         studentDTO.setStudyEndDate(studentEntity.getStudyEndDate());
-        studentDTO.setFieldOfStudy(studentEntity.getFieldOfStudy());
+//        studentDTO.setFieldOfStudy(studentEntity.getFieldOfStudy());
         studentDTO.setGender(studentEntity.getGender());
         studentDTO.setDescription(studentEntity.getDescription());
         return studentDTO;
@@ -95,7 +86,7 @@ public class StudentService {
         studentEntity.setMiddleName(studentDTO.getMiddleName());
         studentEntity.setStudyStartDate(studentDTO.getStudyStartDate());
         studentEntity.setStudyEndDate(studentDTO.getStudyEndDate());
-        studentEntity.setFieldOfStudy(studentDTO.getFieldOfStudy());
+        studentEntity.setFieldOfStudyId(studentDTO.getFieldOfStudyId());
         studentRepository.save(studentEntity);
     }
 

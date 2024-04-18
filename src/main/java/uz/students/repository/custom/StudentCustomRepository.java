@@ -72,7 +72,7 @@ public class StudentCustomRepository {
             dto.setGender(MapperUtil.getGenderValue(object[4]));
             dto.setStudyStartDate(MapperUtil.getLocalDateValue(object[5]));
             dto.setStudyEndDate(MapperUtil.getLocalDateValue(object[6]));
-            dto.setFieldOfStudy(MapperUtil.getStringValue(object[7]));
+            dto.setFieldOfStudyId(MapperUtil.getStringValue(object[7]));
             dto.setBirthDate(MapperUtil.getLocalDateValue(object[8]));
             dto.setName(MapperUtil.getStringValue(object[9]));
             dto.setSurname(MapperUtil.getStringValue(object[10]));

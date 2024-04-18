@@ -75,14 +75,25 @@
         <input type="date" id="studyEndDate" class="form-control mb-4 col-4" name="studyEndDate"
                placeholder="studyEndDate"
                th:field="*{studyEndDate}" required>
-        <label for="fieldOfStudy">Field Of Study:</label>
-        <input type="text" id="fieldOfStudy" class="form-control mb-4 col-4" name="fieldOfStudy"
-               placeholder="fieldOfStudy"
-               th:field="*{fieldOfStudy}" required>
+        <!--        <label for="fieldOfStudy">Field Of Study:</label>-->
+        <!--        <input type="text" id="fieldOfStudy" class="form-control mb-4 col-4" name="fieldOfStudy"-->
+        <!--               placeholder="fieldOfStudy"-->
+        <!--               th:field="*{fieldOfStudyId}" required>-->
         <label for="description">Description:</label>
         <input type="text" id="description" class="form-control mb-4 col-4" name="description"
                placeholder="description"
                th:field="*{description}" required>
+
+        <div class=" pb-2">
+            <label for="name">fieldOfStudy:</label>
+            <select id="fieldOfStudy" name="fieldOfStudy" th:field="*{fieldOfStudyId}" required
+                    class="custom-select">
+                <option selected disabled value="0">...</option>
+                <option th:each="university:${universityList}" th:value="${university.id}"
+                        th:text="${university.name}"></option>
+            </select>
+        </div>
+
         <div class=" ">
             <div class="col-2">
                 <div class="form-group">

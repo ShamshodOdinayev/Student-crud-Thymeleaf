@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.students.dto.StudentDTO;
 import uz.students.dto.StudentFilterDTO;
+import uz.students.entity.UniversityEntity;
 import uz.students.service.StudentService;
+import uz.students.service.UniversityService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private UniversityService universityService;
 
     @GetMapping("/list")
     public String getProfileList(Model model,
@@ -36,6 +42,8 @@ public class StudentController {
     @GetMapping("/go/add")
     public String goToAdd(Model model) {
         model.addAttribute("student", new StudentDTO());
+        List<UniversityEntity> universityList = universityService.getAll();
+        model.addAttribute("universityList", universityList);
         model.addAttribute("isUpdate", false);
         return "student/add";
     }
@@ -51,6 +59,8 @@ public class StudentController {
     @GetMapping("/go/update/{id}")
     public String updateById(@PathVariable("id") String id, Model model) {
         StudentDTO studentDTO = studentService.getStudentById(id);
+        List<UniversityEntity> universityList = universityService.getAll();
+        model.addAttribute("universityList", universityList);
         model.addAttribute("student", studentDTO);
         model.addAttribute("isUpdate", true);
         return "student/add";
